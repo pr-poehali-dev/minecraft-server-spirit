@@ -83,7 +83,7 @@ function Header({ active, onTab }: { active: Tab; onTab: (t: Tab) => void }) {
   );
 }
 
-function AboutTab() {
+function AboutTab({ onTab }: { onTab: (t: Tab) => void }) {
   const stats = [
     { icon: "Lock", label: "Тип", value: "Приватный" },
     { icon: "Layers", label: "Версия", value: "1.21.1" },
@@ -127,7 +127,7 @@ function AboutTab() {
         <p className="font-montserrat font-700 text-blue-900 text-lg mb-2">Хочешь попасть на сервер?</p>
         <p className="text-blue-600/70 mb-5 font-golos">Подай заявку — мы рассматриваем каждого игрока индивидуально.</p>
         <button
-          onClick={() => document.querySelector('[data-tab="apply"]')?.dispatchEvent(new MouseEvent('click', { bubbles: true }))}
+          onClick={() => onTab("apply")}
           className="spirit-btn-primary shadow-md"
         >
           <Icon name="Send" size={16} />
@@ -506,7 +506,7 @@ export default function Index() {
       <Header active={tab} onTab={setTab} />
 
       <main className="max-w-5xl mx-auto px-4 py-12">
-        {tab === "about"   && <AboutTab />}
+        {tab === "about"   && <AboutTab onTab={setTab} />}
         {tab === "rules"   && <RulesTab />}
         {tab === "socials" && <SocialsTab />}
         {tab === "apply"   && <ApplyTab />}
