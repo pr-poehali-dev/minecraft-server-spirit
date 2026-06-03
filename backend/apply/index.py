@@ -6,7 +6,7 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import psycopg2
 
-ADMIN_EMAIL = "qwaisov@gmail.com"
+ADMIN_EMAILS = ["qwaisov@gmail.com", "sendeu823@gmail.com"]
 SMTP_USER = "qwaisov@gmail.com"
 ACTION_URL = "https://functions.poehali.dev/a8960d99-255e-408a-bd67-406283acc96b"
 
@@ -105,10 +105,11 @@ def handler(event: dict, context) -> dict:
       </div>
     </div>
     """
-    try:
-        send_email(ADMIN_EMAIL, f'Новая заявка #{app_id} — {nickname}', html)
-    except Exception:
-        pass
+    for admin_email in ADMIN_EMAILS:
+        try:
+            send_email(admin_email, f'Новая заявка #{app_id} — {nickname}', html)
+        except Exception:
+            pass
 
     return {
         'statusCode': 200,
