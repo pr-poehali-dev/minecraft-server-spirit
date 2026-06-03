@@ -86,7 +86,7 @@ function Header({ active, onTab }: { active: Tab; onTab: (t: Tab) => void }) {
 function AboutTab({ onTab }: { onTab: (t: Tab) => void }) {
   const stats = [
     { icon: "Lock", label: "Тип", value: "Приватный" },
-    { icon: "Layers", label: "Версия", value: "1.21.1" },
+    { icon: "Layers", label: "Версия", value: "1.21.11" },
     { icon: "Map", label: "Размер карты", value: "6 000 × 6 000" },
     { icon: "Users", label: "Сообщество", value: "Дружелюбное" },
   ];
