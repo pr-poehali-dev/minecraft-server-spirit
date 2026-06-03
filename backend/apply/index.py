@@ -62,29 +62,47 @@ def handler(event: dict, context) -> dict:
     reject_url = f"{ACTION_URL}?id={app_id}&decision=reject&token={token}"
 
     html = f"""
-    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#f0f8ff;padding:30px;border-radius:12px;">
-        <h2 style="color:#1a5276;border-bottom:2px solid #f4c430;padding-bottom:10px;">🎮 Новая заявка на сервер Spirit</h2>
-        <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
-            <tr><td style="padding:8px 0;color:#888;width:100px;">Никнейм</td><td style="padding:8px 0;font-weight:bold;color:#1a5276;">{nickname}</td></tr>
-            <tr><td style="padding:8px 0;color:#888;">Email</td><td style="padding:8px 0;color:#1a5276;">{email}</td></tr>
-            <tr><td style="padding:8px 0;color:#888;">ID заявки</td><td style="padding:8px 0;color:#888;">#{app_id}</td></tr>
-        </table>
-        <p style="color:#555;margin-bottom:20px;">Нажми одну из кнопок, чтобы принять решение. Игрок сразу получит письмо.</p>
-        <table style="width:100%;border-collapse:collapse;">
+    <div style="background:#0d1b2e;padding:40px 20px;font-family:Arial,sans-serif;">
+      <div style="max-width:560px;margin:0 auto;background:#112240;border-radius:16px;overflow:hidden;border:1px solid #1e3a5f;">
+        <div style="background:#0d1b2e;padding:24px 32px;border-bottom:2px solid #f4c430;">
+          <p style="margin:0;font-size:11px;letter-spacing:3px;color:#f4c430;text-transform:uppercase;">Spirit Server</p>
+          <h1 style="margin:6px 0 0;font-size:22px;color:#ffffff;font-weight:700;">Новая заявка</h1>
+        </div>
+        <div style="padding:28px 32px;">
+          <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
             <tr>
-                <td style="width:50%;padding-right:8px;">
-                    <a href="{accept_url}" style="display:block;text-align:center;background:#27ae60;color:white;text-decoration:none;padding:14px 20px;border-radius:10px;font-size:16px;font-weight:bold;">
-                        ✅ Принять
-                    </a>
-                </td>
-                <td style="width:50%;padding-left:8px;">
-                    <a href="{reject_url}" style="display:block;text-align:center;background:#e74c3c;color:white;text-decoration:none;padding:14px 20px;border-radius:10px;font-size:16px;font-weight:bold;">
-                        ❌ Отказать
-                    </a>
-                </td>
+              <td style="padding:10px 0;border-bottom:1px solid #1e3a5f;color:#7a9cc4;font-size:13px;width:110px;">Никнейм</td>
+              <td style="padding:10px 0;border-bottom:1px solid #1e3a5f;color:#ffffff;font-weight:700;font-size:15px;">{nickname}</td>
             </tr>
-        </table>
-        <p style="color:#aaa;font-size:12px;margin-top:20px;text-align:center;">Кнопки работают один раз — повторное нажатие будет проигнорировано.</p>
+            <tr>
+              <td style="padding:10px 0;border-bottom:1px solid #1e3a5f;color:#7a9cc4;font-size:13px;">Email</td>
+              <td style="padding:10px 0;border-bottom:1px solid #1e3a5f;color:#a8c4e0;font-size:14px;">{email}</td>
+            </tr>
+            <tr>
+              <td style="padding:10px 0;color:#7a9cc4;font-size:13px;">ID заявки</td>
+              <td style="padding:10px 0;color:#4a6d8c;font-size:13px;">#{app_id}</td>
+            </tr>
+          </table>
+          <p style="color:#7a9cc4;font-size:13px;margin:0 0 20px;">Нажми кнопку — игрок сразу получит письмо с ответом.</p>
+          <table style="width:100%;border-collapse:collapse;">
+            <tr>
+              <td style="width:50%;padding-right:6px;">
+                <a href="{accept_url}" style="display:block;text-align:center;background:#f4c430;color:#0d1b2e;text-decoration:none;padding:14px;border-radius:10px;font-size:15px;font-weight:800;letter-spacing:0.5px;">
+                  ✅ Принять
+                </a>
+              </td>
+              <td style="width:50%;padding-left:6px;">
+                <a href="{reject_url}" style="display:block;text-align:center;background:#1e3a5f;color:#a8c4e0;text-decoration:none;padding:14px;border-radius:10px;font-size:15px;font-weight:700;border:1px solid #2e5080;">
+                  ❌ Отказать
+                </a>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div style="padding:16px 32px;border-top:1px solid #1e3a5f;text-align:center;">
+          <p style="margin:0;color:#2e5080;font-size:11px;">Кнопки работают один раз · Spirit Server 2024</p>
+        </div>
+      </div>
     </div>
     """
     try:

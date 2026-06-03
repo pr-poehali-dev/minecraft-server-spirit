@@ -176,9 +176,9 @@ function SocialsTab() {
     {
       icon: "Send",
       label: "Telegram",
-      handle: "@fqylov",
+      handle: "@mXRlBLhQh",
       desc: "Написать администратору напрямую",
-      href: "https://t.me/fqylov",
+      href: "https://t.me/mXRlBLhQh",
       color: "bg-blue-500",
     },
     {
