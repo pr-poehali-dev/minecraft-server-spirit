@@ -1,0 +1,10 @@
+{
+  "tests": [
+    {
+      "name": "Неверная ссылка",
+      "method": "GET",
+      "path": "/?id=1&decision=accept&token=wrong",
+      "expectedStatus": 400
+    }
+  ]
+}

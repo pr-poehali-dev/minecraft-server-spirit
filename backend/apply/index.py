@@ -8,6 +8,7 @@ import psycopg2
 
 ADMIN_EMAIL = "qwaisov@gmail.com"
 SMTP_USER = "qwaisov@gmail.com"
+ACTION_URL = "https://functions.poehali.dev/a8960d99-255e-408a-bd67-406283acc96b"
 
 CORS_HEADERS = {
     'Access-Control-Allow-Origin': '*',
@@ -56,15 +57,34 @@ def handler(event: dict, context) -> dict:
     cur.close()
     conn.close()
 
+    token = f"{app_id}_spirit2024"
+    accept_url = f"{ACTION_URL}?id={app_id}&decision=accept&token={token}"
+    reject_url = f"{ACTION_URL}?id={app_id}&decision=reject&token={token}"
+
     html = f"""
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #f0f8ff; padding: 30px; border-radius: 12px;">
-        <h2 style="color: #1a5276; border-bottom: 2px solid #f4c430; padding-bottom: 10px;">🎮 Новая заявка на сервер Spirit</h2>
-        <p><b>Никнейм:</b> {nickname}</p>
-        <p><b>Email:</b> {email}</p>
-        <p><b>ID заявки:</b> #{app_id}</p>
-        <div style="margin-top: 20px; padding: 15px; background: white; border-radius: 8px; border-left: 4px solid #1a5276;">
-            <p style="margin: 0; color: #555;">Перейди в админ-панель сайта, чтобы принять или отклонить заявку.</p>
-        </div>
+    <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;background:#f0f8ff;padding:30px;border-radius:12px;">
+        <h2 style="color:#1a5276;border-bottom:2px solid #f4c430;padding-bottom:10px;">🎮 Новая заявка на сервер Spirit</h2>
+        <table style="width:100%;border-collapse:collapse;margin-bottom:20px;">
+            <tr><td style="padding:8px 0;color:#888;width:100px;">Никнейм</td><td style="padding:8px 0;font-weight:bold;color:#1a5276;">{nickname}</td></tr>
+            <tr><td style="padding:8px 0;color:#888;">Email</td><td style="padding:8px 0;color:#1a5276;">{email}</td></tr>
+            <tr><td style="padding:8px 0;color:#888;">ID заявки</td><td style="padding:8px 0;color:#888;">#{app_id}</td></tr>
+        </table>
+        <p style="color:#555;margin-bottom:20px;">Нажми одну из кнопок, чтобы принять решение. Игрок сразу получит письмо.</p>
+        <table style="width:100%;border-collapse:collapse;">
+            <tr>
+                <td style="width:50%;padding-right:8px;">
+                    <a href="{accept_url}" style="display:block;text-align:center;background:#27ae60;color:white;text-decoration:none;padding:14px 20px;border-radius:10px;font-size:16px;font-weight:bold;">
+                        ✅ Принять
+                    </a>
+                </td>
+                <td style="width:50%;padding-left:8px;">
+                    <a href="{reject_url}" style="display:block;text-align:center;background:#e74c3c;color:white;text-decoration:none;padding:14px 20px;border-radius:10px;font-size:16px;font-weight:bold;">
+                        ❌ Отказать
+                    </a>
+                </td>
+            </tr>
+        </table>
+        <p style="color:#aaa;font-size:12px;margin-top:20px;text-align:center;">Кнопки работают один раз — повторное нажатие будет проигнорировано.</p>
     </div>
     """
     try:
