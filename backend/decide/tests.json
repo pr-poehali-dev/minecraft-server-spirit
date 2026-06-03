@@ -1,0 +1,17 @@
+{
+  "tests": [
+    {
+      "name": "OPTIONS preflight",
+      "method": "OPTIONS",
+      "path": "/",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Неверные параметры",
+      "method": "POST",
+      "path": "/",
+      "body": {"id": 999, "decision": "wrong"},
+      "expectedStatus": 400
+    }
+  ]
+}
