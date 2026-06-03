@@ -67,7 +67,10 @@ def handler(event: dict, context) -> dict:
         </div>
     </div>
     """
-    send_email(ADMIN_EMAIL, f'Новая заявка #{app_id} — {nickname}', html)
+    try:
+        send_email(ADMIN_EMAIL, f'Новая заявка #{app_id} — {nickname}', html)
+    except Exception:
+        pass
 
     return {
         'statusCode': 200,
