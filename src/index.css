@@ -125,7 +125,7 @@
   }
 
   .spirit-btn {
-    @apply inline-flex items-center justify-center gap-2 font-montserrat font-700 rounded-xl px-6 py-3 transition-all duration-200;
+    @apply inline-flex items-center justify-center gap-2 font-montserrat font-bold rounded-xl px-6 py-3 transition-all duration-200;
   }
   .spirit-btn-primary {
     @apply spirit-btn bg-[hsl(var(--primary))] text-white hover:opacity-90 active:scale-95;
